@@ -3,7 +3,11 @@ import TaskPage from '../pages/TaskPage/ui/TaskPage';
 
 const App = () => {
     return (
-
+        <Router>
+            <Routes>
+                <Route path="/:documentId" element={<TaskPage />} />
+            </Routes>
+        </Router>
     );
 };
 
