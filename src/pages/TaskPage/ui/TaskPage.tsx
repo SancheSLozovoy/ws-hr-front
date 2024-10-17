@@ -10,6 +10,7 @@ const TaskPage = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string>('');
     const [content, setContent] = useState<string>('');
+    
     useEffect(() => {
         const fetchData = async () => {
             if (documentId) { 
