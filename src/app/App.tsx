@@ -1,12 +1,10 @@
-import React from 'react';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import TaskPage from '../pages/TaskPage/ui/TaskPage';
 
-function App() {
-  return (
-    <div className="App">
+const App = () => {
+    return (
 
-    </div>
-  );
-}
+    );
+};
 
 export default App;
