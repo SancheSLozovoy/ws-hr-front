@@ -3,7 +3,7 @@ import { TaskImageProps } from '../model/types/types';
 import { AppDispatch, RootState } from '../../../app/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { generateImage } from '../model/slices/imageSlice';
-
+import './TaskImage.css'
 
 const TaskImage: React.FC<TaskImageProps> = ({ title, content }) => {
     const imageRef = useRef<HTMLDivElement>(null);
@@ -20,9 +20,9 @@ const TaskImage: React.FC<TaskImageProps> = ({ title, content }) => {
             {imageBase64 ? (
                 <img src={imageBase64} alt="Задача" />
             ) : (
-                <div ref={imageRef} style={{ display: 'inline-block', padding: '20px', backgroundColor: 'white' }}>
-                    <h1 style={{ fontSize: '24px', margin: 0 }}>{title}</h1>
-                    <div style={{ fontSize: '18px', whiteSpace: 'pre-wrap' }}>{content}</div>
+                <div ref={imageRef} className='image'>
+                    <h1 className='image__title'>{title}</h1>
+                    <div className='image__task'>{content}</div>
                 </div>
             )}
         </div>

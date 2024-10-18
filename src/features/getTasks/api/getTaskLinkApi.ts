@@ -11,7 +11,7 @@ const fetchTaskLink = async (documentId: string) => {
         if(isValid){
             const response = await axios.get(`http://localhost:1337/api/tasks?filters[task][$eq]=${taskId}`);
 
-            invalidTask(documentId, false)
+            // invalidTask(documentId, false)
 
             console.log(isValid)
             return response.data.data
