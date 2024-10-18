@@ -1,12 +1,19 @@
-import React from 'react';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import TaskPage from '../pages/TaskPage/ui/TaskPage';
+import { store } from './store';
+import { Provider } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
 
-    </div>
-  );
-}
+const App = () => {
+    return (
+      <Provider store={store}>
+        <Router>
+            <Routes>
+                <Route path="/:documentId" element={<TaskPage />} />
+            </Routes>
+        </Router>
+      </Provider>
+    );
+};
 
 export default App;
