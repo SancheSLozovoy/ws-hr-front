@@ -1,46 +1,101 @@
-# Getting Started with Create React App
+# Инструкция по развороту Плагина
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Требования
 
-## Available Scripts
+- Установленный [Node.js](https://nodejs.org/) (v20.x)
+- Установленный [npm](https://www.npmjs.com/) или [yarn](https://yarnpkg.com/)
+- Установленный [yalc](https://github.com/alyssaxuu/yalc) для связывания плагина с Strapi
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Шаг 1: Установка и настройка Strapi
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. **Склонируйте серверную часть Strapi**:
+```bash
+    git clone https://github.com/SancheSLozovoy/WS-HR-admin.git
+    cd path/WS-HR-admin
+```
 
-### `npm test`
+2. **Создайте файл `.env` для конфигурации**:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Создайте файл `.env` в корне проекта и добавьте настройки подключения:
 
-### `npm run build`
+```javascript
+    HOST=0.0.0.0
+    PORT=1337
+    APP_KEYS="toBeModified1,toBeModified2"
+    API_TOKEN_SALT=tobemodified
+    ADMIN_JWT_SECRET=tobemodified
+    TRANSFER_TOKEN_SALT=tobemodified
+    JWT_SECRET=tobemodified
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Запустите Strapi**:
+```bash
+    npm run develop --watch-admin
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Strapi будет доступен по адресу `http://localhost:1337`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Шаг 2: Установка плагина
+1. **Склонируйте репозиторий проекта**:
 
-### `npm run eject`
+```bash
+    git clone https://github.com/SancheSLozovoy/WS-HR-plugin.git
+    cd path/WS-HR-plugin
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+2. **Установите зависимости**:
+```bash
+   npm install
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. **Связать плагин с Strapi с помощью yalc**:
+   - Сначала установите `yalc`, если он не установлен:
+```bash
+   npm install -g yalc
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+   - В директории вашего плагина выполните команду:
+```bash
+   yalc publish
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   - Затем вернитесь в директорию Strapi и выполните команду для установки плагина:
+```bash
+   cd path/WS-HR-admin
+   yalc add ws-hr
+ ```
 
-## Learn More
+4. **Перезапустите Strapi**:
+```bash
+   npm run develop --watch-admin
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Шаг 3: Установка и запуск фронтенд-приложения
+
+1. **Перейдите в директорию фронтенда**:
+   ```bash
+   cd path/to/your/frontend
+   ```
+
+2. **Установите зависимости**:
+   ```bash
+   npm install
+   ```
+
+3. **Запустите фронтенд-приложение**:
+   ```bash
+   npm start
+   ```
+   Фронтенд будет доступен по адресу `http://localhost:3000`.
+
+
+## Шаг 3: Настройка и использование
+
+1. **Создайте нового администратора**:
+   Перейдите в браузер по адресу `http://localhost:1337/admin` и авторизуйтесь
+
+2. **Использование плагина**:
+    Перейдите на страницу плагина в панеле навигации. Выполните указанные действия 
