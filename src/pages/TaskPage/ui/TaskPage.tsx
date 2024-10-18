@@ -28,15 +28,20 @@ const TaskPage = () => {
                 <div className='container'>
                     <div className='main__content'>
                         <div className='main__content-task'>
-                            {task !== null && (
-                                <TaskImage title={task[0].title} content={task[0].content[0].children[0].text} />
+                            {task ? (
+                                <div>
+                                    <TaskImage title={task[0].title} content={task[0].content[0].children[0].text} />
+                                    <div className='main__content-instruction'>
+                                        <p className='instuction__item'>На выполнение задания дается 40 минут.</p>
+                                        <p>Не забудьте включить запись экрана. По окончании решения выложите запись в облако и отправьте ссылку на нее ответным письмом</p>
+                                        <p>Не перезагружайте страницу – ссылка на задание является одноразовой.</p>
+                                    </div>
+                                </div>
+                            ) : (
+                                <h1>Ссылка недействительна. Это могло произойти из-за того, что по ней уже переходили ранее</h1>
                             )}
                         </div>
-                        <div className='main__content-instruction'>
-                            <p className='instuction__item'>На выполнение задания дается 40 минут.</p>
-                            <p>Не забудьте включить запись экрана. По окончании решения выложите запись в облако и отправьте ссылку на нее ответным письмом</p>
-                            <p>Не перезагружайте страницу – ссылка на задание является одноразовой.</p>
-                        </div>
+
                     </div>
                 </div>
                 <footer className='footer'>
