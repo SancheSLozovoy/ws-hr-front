@@ -1,27 +1,24 @@
-import React, { useEffect, useRef, useState } from 'react';
-import html2canvas from 'html2canvas';
+import React, { useEffect, useRef } from 'react';
 import { TaskImageProps } from '../model/types/types';
+import { AppDispatch, RootState } from '../../../app/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { generateImage } from '../model/slices/imageSlice';
+
 
 const TaskImage: React.FC<TaskImageProps> = ({ title, content }) => {
     const imageRef = useRef<HTMLDivElement>(null);
-    const [base64Image, setBase64Image] = useState<string | null>(null);
 
-    const generateImage = async () => {
-        if (imageRef.current) {
-            const canvas = await html2canvas(imageRef.current);
-            const image = canvas.toDataURL('image/png');
-            setBase64Image(image); 
-        }
-    };
+    const dispatch: AppDispatch = useDispatch();
+    const {imageBase64} = useSelector((state: RootState) => state.image)
 
     useEffect(() => {
-        generateImage();
-    }, [title, content]);
+        dispatch(generateImage(imageRef));
+    }, [title, content, dispatch]);
 
     return (
         <div>
-            {base64Image ? (
-                <img src={base64Image} alt="Задача" />
+            {imageBase64 ? (
+                <img src={imageBase64} alt="Задача" />
             ) : (
                 <div ref={imageRef} style={{ display: 'inline-block', padding: '20px', backgroundColor: 'white' }}>
                     <h1 style={{ fontSize: '24px', margin: 0 }}>{title}</h1>
